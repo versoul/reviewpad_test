@@ -1,21 +1,43 @@
 api-version: reviewpad.com/v2.x
 
 labels:
-  ship:
-    description: Ship mode
-    color: 76dbbe
+  small:
+    description: small changes
+    # color is the hexadecimal color code for the label, without the leading #.
+    color: "294b69"
+  medium:
+    description: medium changes
+    color: "a8c3f7"
+  large:
+    description: large changes
+    color: "8a2138"
 
 rules:
-  - name: changesToMDFiles
-    kind: patch
-    description: Patch only contains changes to files with extension .md
-    spec: $hasFileExtensions([".md"])
+  - name: isSmall
+      kind: patch
+      description: small pull request
+      spec: $size() <= 30
 
-workflow:
-  - name: ship
-    description: Ship process - bypass the review and merge with rebase
+  - name: isMedium
+      kind: patch
+      description: medium-sized pull request
+      spec: $size() > 30 && $size() <= 100
+
+  - name: isLarge
+      kind: patch
+      description: large-sized pull request
+      spec: $size() > 100
+
+workflows:
+  - name: label-pull-request-with-size
+    description: Label pull request with size
     if:
-      - rule: changesToMDFiles
-    then:
-      - $addLabel("ship")
-      - $merge()
+      - rule: isSmall
+        extra-actions:
+          - $addLabel("small")
+      - rule: isMedium
+        extra-actions:
+          - $addLabel("medium")
+      - rule: isLarge
+        extra-actions:
+          - $addLabel("large")
