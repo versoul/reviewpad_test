@@ -14,19 +14,19 @@ labels:
 
 rules:
   - name: isSmall
-      kind: patch
-      description: small pull request
-      spec: $size() <= 30
+    kind: patch
+    description: small pull request
+    spec: $size() <= 30
 
   - name: isMedium
-      kind: patch
-      description: medium-sized pull request
-      spec: $size() > 30 && $size() <= 100
+    kind: patch
+    description: medium-sized pull request
+    spec: $size() > 30 && $size() <= 100
 
   - name: isLarge
-      kind: patch
-      description: large-sized pull request
-      spec: $size() > 100
+    kind: patch
+    description: large-sized pull request
+    spec: $size() > 100
 
 workflows:
   - name: label-pull-request-with-size
