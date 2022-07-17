@@ -37,7 +37,11 @@ workflows:
           - $addLabel("small")
       - rule: isMedium
         extra-actions:
-          - $addLabel("medium")
+          - >
+            $addLabel("medium
+            multiline")
       - rule: isLarge
         extra-actions:
-          - $addLabel("large")
+          - >
+            $addLabel("large
+            multiline")
