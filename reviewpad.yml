@@ -35,12 +35,12 @@ workflows:
       - rule: isSmall
         extra-actions:
           - $addLabel("small")
-          - $assignReviewer(["versoul"], 1)
+          - $assignReviewer(["marcelosousa"], 1)
       - rule: isMedium
         extra-actions:
           - $addLabel("medium")
-          - $assignReviewer(["versoul"], 1)
+          - $assignReviewer(["marcelosousa"], 1)
       - rule: isLarge
         extra-actions:
           - $addLabel("large")
-          - $assignReviewer(["versoul"], 1)
+          - $assignReviewer(["marcelosousa"], 1)
